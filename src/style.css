@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  background: url(../image/carnaby-82KWr7KHwDg-unsplash\ 1.png) no-repeat;
+  background-size: contain;
+  max-width: 1920px;
+  width: 100%;
+  max-height: 1080px;
+  height: 100vh;
+  position: relative;
+}
+
+.dot {
+  position: absolute;
+  background: #6abf4b;
+  opacity: 0.7;
+  border-radius: 40px;
+  top: 44%;
+  left: 36%;
+  cursor: pointer;
+  color: #fff;
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+}
+
+.img-plus {
+  margin: 15px;
+  background-image: url(/public/image/svg/plus.svg); 
+  height: 10px; 
+  width: 10px;
+}
+
+.img-minus {
+  margin: 15px;
+  background-image: url(/public/image/svg/minus.svg); 
+  height: 2px; 
+  width: 10px;
+}
+
+.text {
+  margin: 11px 15px 11px 0;
+}
