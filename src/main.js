@@ -1,30 +1,46 @@
-import "../src/style.css"
+import "../src/style.css";
+import { dotsArr } from "./dotsData";
 
-const dots = document.querySelector('.dot');
-const text = document.createElement('p');
-const image = dots.querySelector('#image');
+const container = document.querySelector(".container");
+const text = document.createElement("p");
 
-dots.addEventListener('click', () => {
-  if (dots.id === '1') {
-    minus();
-  } else {
-    plus();
-  }
-})
+function createDot(color, top, left, id, textContent) {
+  const dots = document.createElement("div");
+  dots.classList.add('dot');
+  dots.setAttribute("style", `background: ${color}; top: ${top}; left: ${left};`);
+  dots.setAttribute("id", `${id}`);
 
+  const image = document.createElement("div");
+  image.classList.add('img');
 
-function minus(){
-  image.classList.replace('img-plus', 'img-minus');
-  text.classList.add('text')
-  text.textContent = 'Стадион';
-  dots.append(text);
-  
-  dots.setAttribute('id', '2')
+  dots.append(image);
+  container.append(dots);
+
+  dots.addEventListener("click", (e) => {
+    if (e.currentTarget.classList.contains('active')) {
+      e.currentTarget.classList.remove('active');
+      const img = e.currentTarget.querySelector('.img');
+      img.classList.remove('img-minus');
+      return
+    }
+
+    const allDots = document.querySelectorAll('.dot');
+    allDots.forEach(dot => {
+      const img = dot.querySelector('.img');
+      img.classList.remove('img-minus');
+      dot.classList.remove('active');
+    })
+
+    image.classList.toggle('img-minus');
+
+    text.classList.add("text");
+    text.textContent = `${textContent}`;
+    dots.append(text);
+
+    dots.classList.add('active');
+  });
 }
 
-function plus() {
-  image.classList.replace('img-minus', 'img-plus');
-
-  text.remove()
-  dots.setAttribute('id', '1')
+for (let i = 0; i < dotsArr.length; i++) {
+  createDot(dotsArr[i].color, dotsArr[i].top, dotsArr[i].left, i, dotsArr[i].text);
 }
