@@ -1,18 +1,19 @@
 {
   "name": "only_test_task",
-  "private": true,
+  "homepage": "https://e-okishev.github.io/only_test_task/",
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": " vite build ",
     "preview": "vite preview",
     "predeploy": "cross-env GITHUB_PAGES=true npm run build",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "gh-pages": "^6.0.0",
     "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "gh-pages": "^6.0.0"
   }
 }

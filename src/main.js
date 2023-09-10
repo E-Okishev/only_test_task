@@ -1,5 +1,5 @@
 import "../src/style.css";
-import { dotsArr } from "../src/dotsData.js";
+import { dotsArr } from "./dotsData.js";
 
 const container = document.querySelector(".container");
 const text = document.createElement("p");
