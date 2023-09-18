@@ -25,7 +25,7 @@ function createDot(color, top, left, id, textContent) {
       return
     }
 
-    closetDots()
+    clearDots()
 
     image.classList.toggle('img-minus');
 
@@ -37,7 +37,7 @@ function createDot(color, top, left, id, textContent) {
   })
 };
 
-function closetDots() {
+function clearDots() {
   const allDots = document.querySelectorAll('.dot');
   allDots.forEach(dot => {
     const img = dot.querySelector('.img');
