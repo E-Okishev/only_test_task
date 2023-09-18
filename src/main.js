@@ -9,6 +9,7 @@ function createDot(color, top, left, id, textContent) {
   dots.classList.add('dot');
   dots.setAttribute("style", `background: ${color}; top: ${top}; left: ${left};`);
   dots.setAttribute("id", `${id}`);
+  dots.setAttribute("dot", "")
 
   const image = document.createElement("div");
   image.classList.add('img');
@@ -24,12 +25,7 @@ function createDot(color, top, left, id, textContent) {
       return
     }
 
-    const allDots = document.querySelectorAll('.dot');
-    allDots.forEach(dot => {
-      const img = dot.querySelector('.img');
-      img.classList.remove('img-minus');
-      dot.classList.remove('active');
-    })
+    closetDots()
 
     image.classList.toggle('img-minus');
 
@@ -38,7 +34,16 @@ function createDot(color, top, left, id, textContent) {
     dots.append(text);
 
     dots.classList.add('active');
-  });
+  })
+};
+
+function closetDots() {
+  const allDots = document.querySelectorAll('.dot');
+  allDots.forEach(dot => {
+    const img = dot.querySelector('.img');
+    img.classList.remove('img-minus');
+    dot.classList.remove('active');
+  })
 }
 
 for (let i = 0; i < dotsArr.length; i++) {
