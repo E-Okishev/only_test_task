@@ -2,50 +2,67 @@ import "../src/style.css";
 import { dotsArr } from "./dotsData.js";
 
 const container = document.querySelector(".container");
-const text = document.createElement("p");
 
 function createDot(color, top, left, id, textContent) {
+  const text = document.createElement("p");
+  text.className = "text";
+
   const dots = document.createElement("div");
-  dots.classList.add('dot');
-  dots.setAttribute("style", `background: ${color}; top: ${top}; left: ${left};`);
+  dots.classList.add("dot");
+  dots.setAttribute(
+    "style",
+    `background: ${color}; top: ${top}; left: ${left};`
+  );
   dots.setAttribute("id", `${id}`);
-  dots.setAttribute("dot", "")
+  dots.dataset.dot = "";
 
   const image = document.createElement("div");
-  image.classList.add('img');
+  image.classList.add("img");
+  text.textContent = `${textContent}`;
 
   dots.append(image);
+  dots.append(text);
   container.append(dots);
+}
 
-  dots.addEventListener("click", (e) => {
-    if (e.currentTarget.classList.contains('active')) {
-      e.currentTarget.classList.remove('active');
-      const img = e.currentTarget.querySelector('.img');
-      img.classList.remove('img-minus');
-      return
+window.addEventListener("click", (e) => {
+  const targetDot = e.target.closest('.dot')
+  if (targetDot) {
+    if (e.target.classList.contains("active")) {
+      e.target.classList.remove("active");
+      const img = e.target.querySelector(".img");
+      img.classList.remove("img-minus");
+      return;
     }
+    clearDots();
 
-    clearDots()
+    const image = targetDot.querySelector(".img");
+    const text = targetDot.querySelector("p");
 
-    image.classList.toggle('img-minus');
+    image.classList.toggle("img-minus");
 
-    text.classList.add("text");
-    text.textContent = `${textContent}`;
-    dots.append(text);
-
-    dots.classList.add('active');
-  })
-};
+    targetDot.append(text);
+    targetDot.classList.add("active");
+  } else {
+    clearDots();
+  }
+});
 
 function clearDots() {
-  const allDots = document.querySelectorAll('.dot');
-  allDots.forEach(dot => {
-    const img = dot.querySelector('.img');
-    img.classList.remove('img-minus');
-    dot.classList.remove('active');
-  })
+  const allDots = document.querySelectorAll(".dot");
+  allDots.forEach((dot) => {
+    const img = dot.querySelector(".img");
+    img.classList.remove("img-minus");
+    dot.classList.remove("active");
+  });
 }
 
 for (let i = 0; i < dotsArr.length; i++) {
-  createDot(dotsArr[i].color, dotsArr[i].top, dotsArr[i].left, i, dotsArr[i].text);
+  createDot(
+    dotsArr[i].color,
+    dotsArr[i].top,
+    dotsArr[i].left,
+    i,
+    dotsArr[i].text
+  );
 }
