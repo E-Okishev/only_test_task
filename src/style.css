@@ -41,6 +41,7 @@
   background-image: url(../public/image/svg/plus.svg);
   height: 10px;
   width: 10px;
+  pointer-events: none;
 }
 
 .img-minus {
@@ -53,4 +54,5 @@
 .text {
   margin: 11px 15px 11px 0;
   display: none;
+  pointer-events: none;
 }
